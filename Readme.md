@@ -36,6 +36,6 @@ Rachel Hines
 
 ##Acknowledgements
 
-[Sfo API] (https://developers.flysfo.com/my-apps)
-[Inrix API] (https://docs.inrix.com/traffic/general_info/)
-[GitHub Repo] (https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo.git)
+* [Sfo API] (https://developers.flysfo.com/my-apps)
+* [Inrix API] (https://docs.inrix.com/traffic/general_info/)
+* [GitHub Repo] (https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo.git)
