@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const authUtils = require('./utils/authUtils.js');
+const calculations = require('./calculations/calculations.js');
 
 // Create an Express application
 const app = express();
@@ -20,9 +21,9 @@ app.use('/getToken', authUtils);
 
 // Define a route to serve the index.html file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
+    //res.sendFile(__dirname + '/views/index.html');
 
-    const authToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjdudWRic2U1ODEiLCJ0b2tlbiI6eyJpdiI6Ijc4MzdmYzU4NmNhNzYwMTcwNzZiZDYxOGE4ODg3NWU0IiwiY29udGVudCI6ImMyYjc1NzA5NmQxYzgwM2IxMjllOGViZTNhNzViNjk5YmEzYjM3YjY1MGU5Nzc5NjdmZjFkYWI2NDZhZTg1NjQ3YjhiMmFkYzFlYTg0NGRiMzg3MTgzOTExZjVmZDNkYjIyZGE5YjNlZDZkNzhhYjhiZDU3NjIwYzBjNTc2NWY0NTg4YzljMmZjYTA2YmQ1MGNjMDI4Mzk5YjQ2ZjAzYTMzOTgxM2FlNGYzYmVlMGRlMmNiNDkzMGQ1NzljYjFjZmU2ZDA0OTUzNGRhOTg3NjM4NjkxMjkwNTdiMTM0OTBkZTg0N2M3MDg2NzFkOWE1MjM0Y2EyMjNlMzcwMjg0ZTk5Yjg4YWNiMGEwODBiYzBlY2Y0ZGJjMzQ1MDY1YmFjYmE3NzE2ZWQ3NjA4NzNmZGIxZTkwZjkwODdkYmI1ZjQ1Y2ZmY2U1NTZlMGZhMDZhOWQzODI1MzY5YTE4NjE1YmEyYTY2YTMxOGRlYWIyOTIyM2VkMmZkMzYxZGU1NTJlZmI4ZmIyNzBlY2Y5Mjk0NmY2N2FiZjY0YjA4YWJkZTljNTIxMWE5NTJmMjMzZDhmMzEyN2E4ODIwNzY4Y2MyZjM3NGJhOWM3ZTJmMjk0Yjk1MDk4YmQ2NWZjOGIxOGYxN2UwMjIxMWYzNDI0N2Y5NDBlMmU4MjI5YzMyZWU2YmRlYzQzNGNmZWIxMTIxZjI3Njg3NGRhNTVkYzRjOGUyNThiMDg5ZTRiOGQ0MjRlNjZlZmJmZTY4NGVlZGI5ZWViZGIyZjhkZTBmMjFkZWIyODQ0OTkxYzUxNWUxNGM5ZmZjZTM2YTlkY2I3ZjU5M2FiMzk5NzBiMmQ3YzdiNmI4M2IyZjA2ZWM3YmI5MjQ2ZGQ4NzIifSwic2VjdXJpdHlUb2tlbiI6eyJpdiI6Ijc4MzdmYzU4NmNhNzYwMTcwNzZiZDYxOGE4ODg3NWU0IiwiY29udGVudCI6ImM4OWYyODBmNDQyYWQyMjUxNDlmZjVhMTBlNDFiOWZiYmIyNjE3OWQ1OGFhNDFkNDU5YzRjNGYyNDk5MmEwNTM0ZjliNTRiMDdlODU2Y2RlMmE2NjgyYWYifSwianRpIjoiN2EzOWY1YTEtZjYxZS00NmZiLWEyYmQtYzhlOTFmMjM3NTJlIiwiaWF0IjoxNzAxNTc4MTc2LCJleHAiOjE3MDE1ODE3NzV9.Pr7FfTWt48cJwvJhMycTao90_74FE0IhuA2aUPvbAng';
+    const authToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjdudWRic2U1ODEiLCJ0b2tlbiI6eyJpdiI6IjY5ZGIzMjY3ZTg1OTk4MWIwNjk5ODFlYjBhMDdjZGVkIiwiY29udGVudCI6ImJhYTRlNDRmYTIxMzdjOTNhNDUyZWZhYzEwNGRkZWI2ZmVmODZjZTNkMzdjZGFmNDkzODQ4YWFhYWJkZGUyMDk2M2JhY2FiY2JiODNiMjA4NGIyZjkwMDcwYTdlNTRjZGQ5MDExODZkYWJiNzczZGY5YmJmZTk4NTdmNTdmZWI3MzYxMzE4YzRkYWIzNzg2NmM2MGY4Zjc2ZmRhMjljMzE1NzgyNTZhYWQ3ZTFlYzRkYzc5MzBkODA4ODQxNmU5MTkxYjg2NzNmMjQzMzA0ZjlmNGNmZGFlOTc4N2YzYzRkOTNhMDMyYjY5NzI2NGJhMWMwNDBjNWMzNzhkMDJiZWQzZGZlMmQzNzVkNjU5NmJjY2RmMGI1MWFjN2EzM2UzYWRhMmEzMTZjNDkyMDFkMDI3ODIwNjExMTNhZmRlZThiMTUxNmZlNjc3YTI2MWRjOTUzYmU0MjQ3MDQyZGU1YTYzZmI4OWY0ZTE4ZjYzMGMyMTg2ODY3NDgxMTgzYmZiZDA0ZGRhZTNiZDViZWVhMzc1MmJkOTI2YTU0OTNiNGQxMGY3Y2YwNTFjYWQ1YTJjZjk3NTdiODg0MDI1YjUzOWE0NThiNTE5YTJlNmNjZWE1NTJiZTdmYjQyNTQ0ZjU0ZGE4MWQxMTVmNjBjNmJmYWU0NmU1NmIyNDU2M2VkN2Q0OTBkOGI5MWQwOWZkZmI0ZTJhOTJjYjMxYTRiMmQ2OTU3OGJmZjk5NzBmYTg4M2FkZDhjMTM3ZTQyMDU1MTU4NWNjMDY0MDFmMDEzODUzMWFiYzg3NzRiOGMwZGY3MTEyMjYxZjg3MzZlZTY4YTYyYzJkZWFkOWMyMmY3ZDhlNzBhZWQwYTllZTNmYTQxNTAyYWM2OTAxIn0sInNlY3VyaXR5VG9rZW4iOnsiaXYiOiI2OWRiMzI2N2U4NTk5ODFiMDY5OTgxZWIwYTA3Y2RlZCIsImNvbnRlbnQiOiI4N2FmY2M3ZGI5M2E3YmI4YWUwM2Q1OWQ2ODQzZmZlMWM1YTc0MmQ3Y2QyYWJiYjdiZmVhOTdmOGM4ZWVhNTYxNjM5YmNlYjBmNmE4YWE2ZjQyMWM4OTM5In0sImp0aSI6IjIxZGVkMDc5LWQ3MGItNDBkNy04MGRhLTllOGExOTI2NzRmNyIsImlhdCI6MTcwMTU4MjEwMywiZXhwIjoxNzAxNTg1NzAzfQ.B39WP0-mXDrbXTdXwuaLMht9FiwhYZ7Nr2A8Jzt_L9I';
     const baseUrl = 'https://api.iq.inrix.com/findRoute';
 
     const departureCoordinates = '37.770581,-122.442550';
@@ -45,21 +46,13 @@ app.get('/', (req, res) => {
     };
 
     fetch(apiUrl, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json(); // Assuming the API returns JSON data
-        })
+        .then(response => response.json())
         .then(data => {
-            // Handle the API response data here
-            console.log(data);
-         
+            // Store the fetched data in a variable
+            res.send(data);
+        }).catch(err=>{
+            console.error('Error Message: ', err);
         })
-        .catch(error => {
-            console.error('Error fetching API data:', error);
-            
-        });
 });  
 
 app.get("/waittime", async (req, res) => {
