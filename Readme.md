@@ -1,7 +1,6 @@
 # INRIX_Hack_Air_Express_Website
 This repository holds the code for Air Express, a solution designed to optimize the travel experience from home to the airport. It streamlines the process of planning departure times by providing real-time information on vehicle congestion, security checkpoint wait times, and flight schedules.
 
-
 ## Features
 
 - **Real-Time Traffic Analysis:** Integrates with live traffic data (Inrix API) to analyze current road conditions.
@@ -36,6 +35,6 @@ Rachel Hines
 
 ##Acknowledgements
 
-* [Sfo API] (https://developers.flysfo.com/my-apps)
-* [Inrix API] (https://docs.inrix.com/traffic/general_info/)
-* [GitHub Repo] (https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo.git)
+* [SFO Airport Checkpoints Wait API] (https://developers.flysfo.com/my-apps)
+* [Inrix Routing API] (https://docs.inrix.com/traffic/general_info/)
+* [GitHub Repo - Inrix Proxy API starter code] (https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo.git)
