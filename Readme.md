@@ -8,8 +8,8 @@ This repository holds the code for Air Express, a solution designed to optimize 
 - **Personalized Departure Time Recommendations:** Considers individual flight details and preferences to generate tailored departure recommendations.
 
 ## Demo
-If you wish to see our Demo - goto: [Demo Videp] (https://youtu.be/M4mPFAJq6wc)
-If you wish to see our presentation - goto: [[Presentation](https://www.canva.com/design/DAF15uW4wNA/bhHxjQttQca4qxk0k3_wVg/edit?utm_content=DAF15uW4wNA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
+**If you wish to see our Demo - goto: [Demo Videp] (https://youtu.be/M4mPFAJq6wc)
+**If you wish to see our presentation - goto: [[Presentation](https://www.canva.com/design/DAF15uW4wNA/bhHxjQttQca4qxk0k3_wVg/edit?utm_content=DAF15uW4wNA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
 
 
 ## Technology Stack
