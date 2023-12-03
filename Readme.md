@@ -27,11 +27,11 @@ In the future, we aim to:
 
 ## Contributors 
 
-Shreya Pandey
-Aiden Hong
-Isayiah Lim
-Avni Rao
-Rachel Hines
+- Shreya Pandey
+- Aiden Hong
+- Isayiah Lim
+- Avni Rao
+- Rachel Hines
 
 ##Acknowledgements
 
