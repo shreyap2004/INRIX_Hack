@@ -19,7 +19,7 @@ app.use(express.static('public'));
 app.use('/getToken', authUtils);
 
 // Define a route to serve the index.html file
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { 
 
     fetch('http://localhost:5000/getToken')
         .then(response => response.json())
@@ -63,10 +63,10 @@ app.get("/waittime", async (req, res) => {
     myHeaders.append("4fcg10Cphlq1jmEHRAbsBxTFrWYm7ITK", "g9VXBhKbGCy66C0Y");
     const response = await fetch("https://api.flysfo.com/sfo/v1.0/checkpoints/e890e3d4-7a42-11e7-bb31-be2e44b06b34/waittime");
     let output = await response.json();
-    var screenMinutes0 = JSON.stringify(output.prescreening_queues[0].estimated_waittime);
-    var screenMinutes1 = JSON.stringify(output.prescreening_queues[1].estimated_waittime);
-    var screenMinutes2 = JSON.stringify(output.prescreening_queues[2].estimated_waittime);
-    var screenMinutes3 = JSON.stringify(output.prescreening_queues[3].estimated_waittime);
+    var screenMinutes0 = output.prescreening_queues[0].estimated_waittime;
+    var screenMinutes1 = output.prescreening_queues[1].estimated_waittime;
+    var screenMinutes2 = output.prescreening_queues[2].estimated_waittime;
+    var screenMinutes3 = output.prescreening_queues[3].estimated_waittime;
     var maxMinutes = 0;
     if (screenMinutes0 > maxMinutes) {
         maxMinutes = screenMinutes0;
@@ -83,8 +83,8 @@ app.get("/waittime", async (req, res) => {
     console.log(screenMinutes3);
     console.log('final result: ' + maxMinutes);
     res.status(200).json(maxMinutes);
-
 });
+
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
