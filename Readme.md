@@ -1,58 +1,41 @@
-# INRIX_Hack_Client_Server_Demo
-This repository will guide you through the process of creating a ExpressJS server/backend app, developing APIs, setting up a frontend Vanilla JavaScript application, and making a simple API call. The goal is to demonstrate how to seamlessly integrate and exchange data between the frontend and backend applications.
+# INRIX_Hack_Air_Express_Website
+This repository holds the code for Air Express, a solution designed to optimize the travel experience from home to the airport. It streamlines the process of planning departure times by providing real-time information on vehicle congestion, security checkpoint wait times, and flight schedules.
 
-
-# Client Server ExpressJS App - INRIX HACK 2023
-
-## Overview
-This repository contains the source code for a ExpressJS web application developed for INRIX HACK 2023. The application serves as a client-server demo example to help you get started with client-server interactions using ExpressJS and Bootstrap.
-
-## Links
-If you wish to see an Flask - Python example for the same project goto: [FLask Python code example](https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_Demo)
 
 ## Features
-- **Home Page**: A simple home page with Bootstrap styling.
-- You can click the GetToken button in the navbar after hosting this app locally to print the token on the html page
-- **GetToken Endpoint**: Access the `/getToken` endpoint to receive a JSON response with the Auth Token.
-  
 
-## Prerequisites
-- npm & Node
+- **Real-Time Traffic Analysis:** Integrates with live traffic data (Inrix API) to analyze current road conditions.
+- **Dynamic Airport Security Predictions:** Utilizes SFO Airport flight data
+- **Personalized Departure Time Recommendations:** Considers individual flight details and preferences to generate tailored departure recommendations.
 
-## Setup Instructions
+## Demo
+If you wish to see a Flask - Python example for the same project goto: [FLask Python code example](https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_Demo)
 
-1. **Clone the Repository:**
-    ```bash
-    git clone git@github.com:<YOUR USER NAME>/INRIX_Hack_Client_Server_ExpressJS_Demo.git
-    cd INRIX_Hack_Client_Server_Demo
-    ```
+## Technology Stack
 
-2. **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-3. !!!! Make sure to paste your INRIX App_Id and Hash_Token here [utils/authUtils.js](https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo/blob/7d80f9365697f304d94968919f1ff3fae205161f/utils/authUtils.js#L5)   
+- Node.js
+- Express.js
+- React.js
+- APIs
 
-## Running the Application
+## What's next for Air Express
 
-1. **Start the Express App:**
-    ```bash
-    node main.js
-    ```
-    Make sure to be in the same directory where you have your main.py file
+In the future, we aim to:
+- Include gate-to-gate timings
+- Provide checkpoint data based on specific flights
+- Allow users to choose transportation methods to the airport
+- Improve the aesthetics of the website
 
-2. **Access the App:**
-    Open your web browser and go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+## Contributors 
 
-3. **Explore the App:**
-    - Click on the "GetToken" link in the navigation bar to fetch and display the API token dynamically.
-    
-## File Structure
-- **main.py:** ExpressJS application script.
-- **views/:** HTML templates for the web pages.
-- **public/:** Static files (CSS, JS).
----
+Shreya Pandey
+Aiden Hong
+Isayiah Lim
+Avni Rao
+Rachel Hines
 
-If you want to learn how to parse a JSON Dataset, look at the json-parser-example.js [Example](https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo/blob/main/json-parser-example.js)
+##Acknowledgements
 
-**Happy Hacking!**
+[Sfo API] (https://developers.flysfo.com/my-apps)
+[Inrix API] (https://docs.inrix.com/traffic/general_info/)
+[GitHub Repo] (https://github.com/INRIX-Aashay-Motiwala/INRIX_Hack_Client_Server_ExpressJS_Demo.git)
